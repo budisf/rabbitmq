@@ -15,11 +15,13 @@ type RabbitMQ struct {
 func NewRabbitMQ(url string) (*RabbitMQ, error) {
 	conn, err := amqp.Dial(url)
 	if err != nil {
+		log.Println("Failed to connect to RabbitMQ")
 		return nil, err
 	}
 
 	channel, err := conn.Channel()
 	if err != nil {
+		log.Println("Failed to open a channel")
 		return nil, err
 	}
 
